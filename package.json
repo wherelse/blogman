@@ -1,13 +1,14 @@
 {
   "name": "BlogMan",
-  "displayName": "Blog Article Manage",
+  "displayName": "BlogMan",
   "description": "A VSCode extension to manage and organize blog articles written in Markdown.",
   "version": "1.1.0",
   "publisher": "wherelse",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.96.0"
   },
   "activationEvents": [
+    "onStartupFinished",
     "onView:markdownFilesView",
     "onCommand:blogArticleManage.changeSortOrder",
     "onCommand:blogArticleManage.changeGroupBy",
@@ -50,7 +51,7 @@
       },
       {
         "command": "blogArticleManage.refresh",
-        "title": "刷新 Markdown 文件视图",
+        "title": "Refresh Blog Article Manage",
         "icon": {
           "light": "resources/refresh.svg",
           "dark": "resources/refresh.svg"
@@ -120,5 +121,8 @@
     "mocha": "^9.0.0",
     "typescript": "^4.4.3",
     "vscode-test": "^1.5.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
   }
 }

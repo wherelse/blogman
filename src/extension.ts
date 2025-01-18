@@ -25,6 +25,8 @@ type GroupBy = '标签' | '年份' | '无分组';
 type SortOrder = '最新排序' | '最旧排序';
 
 export function activate(context: vscode.ExtensionContext) {
+    console.log('BlogMan extension is now active!'); // 确认扩展激活
+
     const provider = new MarkdownFilesProvider(context);
     vscode.window.registerTreeDataProvider('markdownFilesView', provider);
 
@@ -33,9 +35,14 @@ export function activate(context: vscode.ExtensionContext) {
     provider.setSortOrder('最新排序');
 
     // 注册刷新命令
-    context.subscriptions.push(
-        vscode.commands.registerCommand('blogArticleManage.refresh', () => provider.refresh())
-    );
+    let refreshCommand = vscode.commands.registerCommand('blogArticleManage.refresh', () => {
+        // 在这里实现刷新逻辑
+        vscode.window.showInformationMessage('Blog Article Manage Refreshed!');
+        provider.refresh(); // 刷新树视图
+    });
+
+    context.subscriptions.push(refreshCommand);
+    console.log('Registered command: blogArticleManage.refresh'); // 确认命令注册
 
     // 注册排序切换命令
     context.subscriptions.push(
